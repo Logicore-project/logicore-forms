@@ -17,7 +17,7 @@ yarn add logicore-forms
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 import {
   validateDefinition,
@@ -32,8 +32,9 @@ import {
   getByPath,
   setByPath,
   modifyHelper,
-} from "../logicore-forms";
-import 'logicore-forms/dist/index.css'
+  update,
+} from "logicore-forms";
+//import 'logicore-forms/dist/index.css'
 
 const fields = {
   "type": "Fields",
@@ -66,7 +67,7 @@ const fields = {
   ]
 };
 
-const HelloLogicoreForms = () => {
+const App = () => {
   const [state, setState] = useState({});
   const [errors, setErrors] = useState({});
   const onReset = (path) => {
@@ -78,13 +79,8 @@ const HelloLogicoreForms = () => {
     const errors = validateDefinition(fields, state);
     setErrors(errors, null);
     if (!definitionIsInvalid(fields, errors, state)) {
-      // ok
-      setLastValue(state);
+      console.log('data submitted', state);
     } else {
-      NotificationManager.error(
-        "Please fix the errors below",
-        "Error"
-      );
       setTimeout(() => {
         try {
           document
@@ -96,7 +92,8 @@ const HelloLogicoreForms = () => {
       }, 50);
     }
   };
-  return (
+  return (<div className="container">
+    <h3 className="my-3">My First form</h3>
     <form onSubmit={onSubmit}>
       <FormComponent
         definition={fields}
@@ -111,8 +108,10 @@ const HelloLogicoreForms = () => {
         <button type="button" className="btn btn-outline-secondary" onClick={_ => { setState(null); setErrors(null); }}>Reset</button>
       </div>
     </form>
-  );
+  </div>);
 }
+
+export default App;
 ```
 
 ## License

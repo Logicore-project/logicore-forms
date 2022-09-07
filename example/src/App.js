@@ -48,7 +48,7 @@ const fields = {
   ]
 };
 
-const HelloLogicoreForms = () => {
+const App = () => {
   const [state, setState] = useState({});
   const [errors, setErrors] = useState({});
   const onReset = (path) => {
@@ -60,14 +60,8 @@ const HelloLogicoreForms = () => {
     const errors = validateDefinition(fields, state);
     setErrors(errors, null);
     if (!definitionIsInvalid(fields, errors, state)) {
-      // ok
-      //setLastValue(state);
-      console.log('Hello', state);
+      console.log('data submitted', state);
     } else {
-      /*NotificationManager.error(
-        "Please fix the errors below",
-        "Error"
-      );*/
       setTimeout(() => {
         try {
           document
@@ -97,4 +91,4 @@ const HelloLogicoreForms = () => {
     </form>
   </div>);
 }
-export default HelloLogicoreForms
+export default App;
