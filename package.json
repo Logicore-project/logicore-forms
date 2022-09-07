@@ -1,6 +1,6 @@
 {
   "name": "logicore-forms",
-  "version": "1.0.2",
+  "version": "1.0.3-alpha.1",
   "description": "ReactJS-based declarative forms library",
   "author": "Andrei Boltachev <andrewboltachev@gmail.com>",
   "repository": "logicore-project/logicore-forms",
