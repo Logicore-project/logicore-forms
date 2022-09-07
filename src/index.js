@@ -474,4 +474,5 @@ export {
   setByPath,
   modifyHelper,
   fieldsLayouts,
+  update
 };
