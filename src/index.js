@@ -9,6 +9,7 @@ import React, {
   useRef,
   useContext,
 } from "react";
+
 import { v4 as uuidv4 } from "uuid";
 import classd from "classd";
 import { Button, Modal } from "react-bootstrap";
@@ -34,6 +35,14 @@ import {
   interceptors,
   singletonComponents,
 } from "./core";
+
+import {
+  BaseLayout,
+  gatherFileUids,
+  result_worth_processing,
+  mainComponents,
+  wrapperComponents,
+} from "./pages";
 
 import {
   pathToUpdate,
@@ -504,4 +513,9 @@ export {
   fieldsLayouts,
   update,
   singletonComponents,
+  BaseLayout,
+  gatherFileUids,
+  result_worth_processing,
+  mainComponents,
+  wrapperComponents,
 };
