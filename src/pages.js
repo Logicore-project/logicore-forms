@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { GenericForm } from './core'
-import { NotificationContainer, NotificationManager } from 'react-notifications'
+import { NotificationManager } from 'react-notifications'
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
