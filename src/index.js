@@ -32,6 +32,7 @@ import {
   formValidators,
   fieldsLayouts,
   interceptors,
+  singletonComponents,
 } from "./core";
 
 import {
@@ -57,7 +58,7 @@ Object.assign(formValidators, {
   },
 });
 
-const RequiredWrapper = ({ required, children }) => (
+singletonComponents.RequiredWrapper = ({ required, children }) => (
   required ? (
     <span style={{ fontWeight: "bold" }}>
       {children} <span className="text-red">*</span>
@@ -69,11 +70,11 @@ const RequiredWrapper = ({ required, children }) => (
   )
 );
 
-const FieldLabel = ({ definition, id, context, children }) => {
+singletonComponents.FieldLabel = ({ definition, id, context, children }) => {
   return (<div className="my-1">
-    <RequiredWrapper required={definition.required}>
+    <singletonComponents.RequiredWrapper required={definition.required}>
       {definition.label}
-    </RequiredWrapper>
+    </singletonComponents.RequiredWrapper>
     {children}
   </div>);
 };
@@ -127,7 +128,7 @@ const TextField = ({
   const id = "id_" + uuidv4();
   const { label } = definition;
   return (
-    <FieldLabel definition={definition} id={id} context={context}>
+    <singletonComponents.FieldLabel definition={definition} id={id} context={context}>
     <input
         id={id}
         type={definition.subtype || "text"}
@@ -142,7 +143,7 @@ const TextField = ({
         disabled={!!disabled}
       />
       {error && <div className="invalid-feedback d-block">{error}</div>}
-    </FieldLabel>
+    </singletonComponents.FieldLabel>
   );
 };
 TextField.isEmpty = (x) => !x;
@@ -161,7 +162,7 @@ const TextareaField = ({
   const id = "id_" + uuidv4();
   const { label } = definition;
   return (
-    <FieldLabel definition={definition} id={id} context={context}>
+    <singletonComponents.FieldLabel definition={definition} id={id} context={context}>
       <textarea
         id={id}
         type="text"
@@ -173,7 +174,7 @@ const TextareaField = ({
         }}
       />
       {error && <div className="invalid-feedback d-block">{error}</div>}
-    </FieldLabel>
+    </singletonComponents.FieldLabel>
   );
 };
 TextareaField.isEmpty = (x) => !x;
@@ -204,7 +205,7 @@ const NumberField = ({
   }
   //const values = [7, 5, 11];
   return (
-    <FieldLabel definition={definition} id={id} context={context}>
+    <singletonComponents.FieldLabel definition={definition} id={id} context={context}>
       <div style={{display: "flex", alignItems: 'center'}} className="currency-input-wrapper">
         <input
           {...extra}
@@ -222,7 +223,7 @@ const NumberField = ({
         </div>}
       </div>
       {error && <div className="invalid-feedback d-block">{error}</div>}
-    </FieldLabel>
+    </singletonComponents.FieldLabel>
   );
 };
 NumberField.isEmpty = (x) => !x;
@@ -320,7 +321,7 @@ const SelectField = ({
   </div> :*/ React.Fragment;
   return (
     <Wrapper>
-      <FieldLabel definition={definition} id={id} context={context}>
+      <singletonComponents.FieldLabel definition={definition} id={id} context={context}>
         <div
           style={{
             margin: "0.6em 0",
@@ -347,7 +348,7 @@ const SelectField = ({
           />
         </div>
         {error && <div className="invalid-feedback d-block">{error}</div>}
-      </FieldLabel>
+      </singletonComponents.FieldLabel>
       {/*definition.create_form && <>
         <FormComponent
           definition={{...definition.create_form.fields, layout: "ModalLayout", inside: ({ setShow }) => (
@@ -496,11 +497,11 @@ export {
   FormComponent,
   formComponents,
   GenericForm,
-  FieldLabel,
   interceptors,
   getByPath,
   setByPath,
   modifyHelper,
   fieldsLayouts,
-  update
+  update,
+  singletonComponents,
 };

@@ -33,6 +33,8 @@ export let validateDefinition, definitionIsInvalid;
 
 export let formComponents, FormComponent;
 
+export let singletonComponents = {};
+
 export let fieldsLayouts = {};
 
 export let interceptors = {};
