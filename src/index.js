@@ -14,7 +14,8 @@ import {
   formValidators,
   fieldsLayouts,
   interceptors,
-  singletonComponents
+  singletonComponents,
+  submitButtonWidgets,
 } from './core'
 
 import {
@@ -536,5 +537,6 @@ export {
   gatherFileUids,
   result_worth_processing,
   mainComponents,
-  wrapperComponents
+  wrapperComponents,
+  submitButtonWidgets,
 }
