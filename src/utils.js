@@ -1,5 +1,11 @@
+// Normal utils imports
+import React, { useState, useEffect } from "react";
 import update, { extend } from 'immutability-helper'
+// Server integration utils imports
+import axios from "axios";
+import axiosDefaults from "axios/lib/defaults";
 
+// Normal utils
 extend('$auto', function (value, object) {
   return object ? update(object, value) : update({}, value)
 })
@@ -205,4 +211,26 @@ export function setByPath(struct, path, value) {
   return update(value, pathToUpdate(path, { $set: value }))
 }
 
+// Server integration utils
+axiosDefaults.xsrfCookieName = "csrftoken"
+axiosDefaults.xsrfHeaderName = "X-CSRFToken"
+
+export function useApi(url, ...params) {
+  const [result, setResult] = useState();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    console.log('will reload');
+    setLoading(true);
+    setResult(null);
+    axios.get(url).then(r => {
+      setResult(r.data);
+      setLoading(false);
+    });
+  }, [url, ...params]);
+
+  return [result, loading, setResult];
+}
+
+// Export
 export { update }
